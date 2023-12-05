@@ -1,0 +1,24 @@
+{% extends "direccion.html" %}
+
+{% load static %}
+
+{% block title %}
+    SACIS - UDES Criterio de Calidad
+{% endblock %}
+
+{% block direccion %}
+
+    <div class="card shadow border-0 rounded-4 mb-5">
+            <div class="card-body p-5">
+                <h3>Criterio: {{ criterio.criterio }}</h3>
+                <p>Estado: {{ criterio.estado }}</p>
+                <p>Responsable: {{ criterio.responsable }}</p>
+                <p>Descripción: </p>
+                <p>{{ criterio.criterio.descripcion }}</p>
+            </div>
+        </div>
+    <div>
+    <a class="btn btn-primary px-4 py-3" href="{% url 'Criterios' %}">Regresar</a>
+    <a class="btn btn-warning px-4 py-3" href="{% url 'Criterio-update' criterio.id %}">Actualizar</a>
+    </div>
+{% endblock %}

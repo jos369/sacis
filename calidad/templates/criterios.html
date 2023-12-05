@@ -1,0 +1,54 @@
+{% extends "calidad.html" %}
+
+{% load static %}
+
+{% block title %}
+    SACIS - UDES Criterios de Calidad
+{% endblock %}
+
+{% block calidad %}
+    <div class="container">
+        <div class="d-flex align-items-center justify-content-between mb-4">
+            <h2 class="text-primary fw-bolder mb-0">Criterios de Calidad</h2>
+        </div>
+        <div class="card shadow border-0 rounded-4 mb-5">
+            <div class="card-body p-5">
+            <div class="text-primary fw-bolder mb-2">Criterios de Registro Calificado</div>
+                {% if rc %}
+                    <ul>
+                    {% for crit in rc %}
+                        <li>
+                            <a href="{% url 'Criterio-detail' crit.id %}">{{ crit.criterio }}</a>
+                            <div class="small text-muted">Estado: {{ crit.estado }}</div>
+                            <div class="small text-muted">Responsable: {{ crit.responsable }}</div>
+                        </li>
+                    {% endfor %}
+                    </ul>
+
+                {% else %}
+                    <p>No hay registros de criterios de registro calificado</p>
+                {% endif %}
+            </div>
+        </div>
+        <div class="card shadow border-0 rounded-4 mb-5">
+            <div class="card-body p-5">
+            <div class="text-primary fw-bolder mb-2">Criterios de Acreditación de Alta Calidad</div>
+                {% if ac %}
+                    <ul>
+                    {% for crit in ac %}
+                        <li>
+                            <a href="{% url 'Criterio-detail' crit.id %}">{{ crit.criterio }}</a>
+                            <div class="small text-muted">Estado: {{ crit.estado }}</div>
+                            <div class="small text-muted">Responsable: {{ crit.responsable }}</div>
+                        </li>
+                    {% endfor %}
+                    </ul>
+
+                {% else %}
+                    <p>No hay registros de criterios de acreditación de alta calidad</p>
+                {% endif %}
+            </div>
+        </div>
+    </div>
+
+{% endblock %}

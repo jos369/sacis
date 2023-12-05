@@ -1,0 +1,34 @@
+{% extends "actividades.html" %}
+
+{% load static %}
+
+{% block title %}
+    SACIS - UDES Evidencias de Actividad
+{% endblock %}
+
+{% block actividades %}
+    <div class="container">
+        <div class="d-flex align-items-center justify-content-between mb-4">
+            <h2 class="text-primary fw-bolder mb-0">Evidencias de Actividad</h2>
+        </div>
+        <div class="card shadow border-0 rounded-4 mb-5">
+            <div class="card-body p-5">
+                {% if evidencia_list %}
+                    <ul>
+                    {% for evid in evidencia_list %}
+                        <li>
+                        <a href="{% url 'Evidencia-detail' evid.id %}">{{ evid }}</a>
+                        </li>
+                    {% endfor %}
+                    </ul>
+
+                {% else %}
+                    <p>La actividad no tiene evidencias registradas</p>
+                {% endif %}
+                <a class="btn btn-primary px-4 py-3" href="{% url 'Actividades' %}">Regresar</a>
+                <a class="btn btn-success px-4 py-3" href="{% url 'Evidencia-create' %}">Registrar Evidencia</a>
+            </div>
+        </div>
+    </div>
+
+{% endblock %}

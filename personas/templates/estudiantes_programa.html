@@ -1,0 +1,33 @@
+{% extends "base.html" %}
+
+{% load static %}
+
+{% block title %}
+    SACIS - UDES Estudiantes del Programa Académico
+{% endblock %}
+
+{% block content %}
+
+    <div class="container px-5 my-5">
+        <div class="d-flex align-items-center justify-content-between mb-4">
+            <h2 class="text-primary fw-bolder mb-0">Estudiantes</h2>
+        </div>
+        <div class="card shadow border-0 rounded-4 mb-5">
+            <div class="card-body p-5">
+                {% if estudiante_list %}
+                    <ul>
+                    {% for estudiante in estudiante_list %}
+                        <li>
+                        <a href="{% url 'Estudiante-detail' estudiante.id %}">{{ estudiante.full_name }}</a>
+                        </li>
+                    {% endfor %}
+                    </ul>
+
+                {% else %}
+                    <p>El programa académico no tiene estudiantes registrados</p>
+                {% endif %}
+            </div>
+        </div>
+    </div>
+
+{% endblock %}

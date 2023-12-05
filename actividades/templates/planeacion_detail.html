@@ -1,0 +1,25 @@
+{% extends "actividades.html" %}
+
+{% load static %}
+
+{% block title %}
+    SACIS - UDES Planeacion {{ planeacion }}
+{% endblock %}
+
+{% block actividades %}
+
+    <div class="card shadow border-0 rounded-4 mb-5">
+            <div class="card-body p-5">
+                <h3>Planeación: {{ planeacion }}</h3>
+                <p>Periodicidad: {{ planeacion.periodicidad }}</p>
+                <p>Fecha de Inicio: {{ planeacion.fechaInicio }}</p>
+                <p>Fecha de Finalización: {{ planeacion.fechaFin }}</p>
+                <p>Fecha de Inicio Programada: {{ actividad.fechaIniProgramada }}</p>
+                <p>Estado: {{ planeacion.estado }}</p>
+            </div>
+        </div>
+    <div>
+    <a class="btn btn-primary px-4 py-3" href="{% url 'Planes' %}">Regresar</a>
+    <a class="btn btn-warning px-4 py-3" href="{% url 'Planeacion-update' planeacion.id %}">Actualizar</a>
+    </div>
+{% endblock %}

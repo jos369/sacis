@@ -1,0 +1,192 @@
+{% extends "base.html" %}
+
+{% load static %}
+
+{% block title %}
+    SACIS - UDES Panel General del Programa Académico
+{% endblock %}
+
+{% block content %}
+    <!-- Page Content-->
+    <div class="container px-5 my-5">
+        <div class="text-center mb-5">
+            <h1 class="display-5 fw-bolder mb-0"><span class="text-gradient d-inline">Descripción General</span></h1>
+        </div>
+        <div class="row gx-5 justify-content-center">
+            <div class="col-lg-11 col-xl-9 col-xxl-8">
+                <!-- Academic Program Section-->
+                <section>
+                    <div class="d-flex align-items-center justify-content-between mb-4">
+                        <h2 class="text-primary fw-bolder mb-0">Programa Académico</h2>
+                        <!-- Go to Link button-->
+                        <a class="btn btn-primary px-4 py-3" href="{{ programa.url }}">
+                            <div class="d-inline-block bi bi-cloud-fill me-2"></div>
+                            Más Información
+                        </a>
+                    </div>
+                    <!-- Program Card 1-->
+                    <div class="card shadow border-0 rounded-4 mb-5">
+                        <div class="card-body p-5">
+                            <div class="row align-items-center gx-5">
+                                <div class="col text-center text-lg-start mb-4 mb-lg-0">
+                                    <div class="bg-light p-4 rounded-4">
+                                        <div class="text-primary fw-bolder mb-2">{{ programa.nombre|title }}</div>
+                                        <div class="small fw-bolder">{{ programa.modalidad|title }}</div>
+                                        <div class="small text-muted">Semestres: {{ programa.duracion }}</div>
+                                        <div class="small text-muted">Director: </div>
+                                        <div class="small text-muted">{{ programa.director|title }}</div>
+                                    </div>
+                                </div>
+                                <div class="col-lg-8">
+                                    <div><p>Registro Calificado <strong>{{ registro.estado }}</strong> con Resolución No: {{ registro.numResolucion }}. <br/>Obtenido el {{ registro.fechaObtencion }} y con vencimiento el {{ registro.fechaVencimiento }}.</p>
+                                        {% if alta == "Sin Acreditación" %}
+                                            <p>Acreditación de Alta Calidad {{ alta }}</p>
+                                        {% else %}
+                                            <p>Acreditación de Alta Calidad <strong>{{ alta.estado }}</strong> con Resolución No: {{ alta.numResolucion }}. <br/>Obtenido el {{ alta.fechaObtencion }} y con vencimiento el {{ alta.fechaVencimiento }}</p>
+                                        {% endif %}
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- Program Card 2-->
+                    <div class="card shadow border-0 rounded-4 mb-5">
+                        <div class="card-body p-5">
+                            <div class="row align-items-center gx-5">
+                                <div class="col text-center text-lg-start mb-4 mb-lg-0">
+                                    <div class="bg-light p-4 rounded-4">
+                                        <div class="text-primary fw-bolder mb-2">Criterios de Calidad</div>
+                                        <div class="d-inline-block bi bi-patch-check me-2"></div>
+                                    </div>
+                                </div>
+                                <div class="col-lg-8">
+                                    <div>
+                                        {% if criterios %}
+                                        <ul>
+                                            {% for criterio in criterios %}
+                                                <li>{{ criterio.nombre }}<br/><strong>{{ criterio.estado }}.</strong></li>
+                                            {% endfor %}
+                                        </ul>
+                                        {% endif %}
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+                <!-- Activities Section-->
+                <section>
+                    <h2 class="text-secondary fw-bolder mb-4">Actividades</h2>
+                    <!-- Planning Card 1-->
+                    <div class="card shadow border-0 rounded-4 mb-5">
+                        <div class="card-body p-5">
+                            <div class="row align-items-center gx-5">
+                                <div class="col text-center text-lg-start mb-4 mb-lg-0">
+                                    <div class="bg-light p-4 rounded-4">
+                                        <div class="text-secondary fw-bolder mb-2">Sin Planeación</div>
+                                        <div class="mb-2">
+                                            <div class="small fw-bolder">Actividades Espontáneas</div>
+                                            <div class="small text-muted">Colaboraciones</div>
+                                            <div class="small text-muted">Oportunidades</div>
+                                            <div class="small text-muted">Iniciativas</div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-lg-8">
+                                    <div>
+                                        {% if actSpontaneas %}
+                                            <ul>
+                                            {% for act in actSpontaneas %}
+                                                <li>
+                                                {{ act.nombre|title }}.<br/>Fecha: {{ act.fechaIniProgramada }} - <strong>{{ act.estado }}</strong>
+                                                </li>
+                                            {% endfor %}
+                                            </ul>
+                                        {% else %}
+                                            No hay actividades sin Planeación.
+                                        {% endif %}
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- Planning Cards 2-->
+                {% for plans in planes %}
+                    <div class="card shadow border-0 rounded-4 mb-5">
+                        <div class="card-body p-5">
+                            <div class="row align-items-center gx-5">
+                                <div class="col text-center text-lg-start mb-4 mb-lg-0">
+                                    <div class="bg-light p-4 rounded-4">
+                                        <div class="text-secondary fw-bolder mb-2">Planeación {{ forloop.counter }}</div>
+                                        {% for plid in planid %}
+                                        <div class="mb-2">
+                                            <div class="small fw-bolder">{{ plan.fechaInicio }} - {{ plan.fechaFin }}</div>
+                                            <div class="small text-muted">{{ plan.estado }}</div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-lg-8">
+                                    <div>
+                                        <ul>
+                                        {% for act in acts %}
+                                            <li>
+                                            {{ act.nombre|title }}.<br/>Fecha: {{ act.fechaIniProgramada }} - <strong>{{ act.estado }}</strong>
+                                            </li>
+                                        {% endfor %}
+                                        </ul>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                                    {% endfor %}
+                {% endfor %}
+                </section>
+                <!-- Divider-->
+                <div class="pb-5"></div>
+                <!-- Skills Section-->
+                <section>
+                    <!-- Evidence Card-->
+                    <div class="card shadow border-0 rounded-4 mb-5">
+                        <div class="card-body p-5">
+                            <!-- Professional skills list-->
+                            <div class="mb-5">
+                                {% comment %}<div class="d-flex align-items-center mb-4">
+                                    <div class="feature bg-primary bg-gradient-primary-to-secondary text-white rounded-3 me-3"><i class="bi bi-question-octagon"></i></div>
+                                    <h3 class="fw-bolder mb-0"><span class="text-gradient d-inline">Actividades sin Evidencias</span></h3>
+                                </div>
+                                <div class="row row-cols-1 row-cols-md-3 mb-4">
+                                    <div class="col mb-4 mb-md-0"><div class="d-flex align-items-center bg-light rounded-4 p-3 h-100">SEO/SEM Marketing</div></div>
+                                    <div class="col mb-4 mb-md-0"><div class="d-flex align-items-center bg-light rounded-4 p-3 h-100">Statistical Analysis</div></div>
+                                    <div class="col"><div class="d-flex align-items-center bg-light rounded-4 p-3 h-100">Web Development</div></div>
+                                </div>
+                                <div class="row row-cols-1 row-cols-md-3">
+                                    <div class="col mb-4 mb-md-0"><div class="d-flex align-items-center bg-light rounded-4 p-3 h-100">Network Security</div></div>
+                                    <div class="col mb-4 mb-md-0"><div class="d-flex align-items-center bg-light rounded-4 p-3 h-100">Adobe Software Suite</div></div>
+                                    <div class="col"><div class="d-flex align-items-center bg-light rounded-4 p-3 h-100">User Interface Design</div></div>
+                                </div>
+                            </div>{% endcomment %}
+                            <!-- Other list-->
+                            <div class="mb-0">
+                                <div class="d-flex align-items-center mb-4">
+                                    <div class="feature bg-primary bg-gradient-primary-to-secondary text-white rounded-3 me-3"><i class="bi bi-paperclip"></i></div>
+                                    <h3 class="fw-bolder mb-0"><span class="text-gradient d-inline">Tipos de Evidencia</span></h3>
+                                </div>
+                                <div class="row row-cols-1 row-cols-md-3 mb-4">
+                                    <div class="col mb-4 mb-md-0"><div class="d-flex align-items-center bg-light rounded-4 p-3 h-100">Listas de Asistencia</div></div>
+                                    <div class="col mb-4 mb-md-0"><div class="d-flex align-items-center bg-light rounded-4 p-3 h-100">Actas</div></div>
+                                    <div class="col"><div class="d-flex align-items-center bg-light rounded-4 p-3 h-100">Oficios Administrativos</div></div>
+                                </div>
+                                <div class="row row-cols-1 row-cols-md-3">
+                                    <div class="col mb-4 mb-md-0"><div class="d-flex align-items-center bg-light rounded-4 p-3 h-100">Proyectos de Aula</div></div>
+                                    <div class="col mb-4 mb-md-0"><div class="d-flex align-items-center bg-light rounded-4 p-3 h-100">Proyectos de Investigación</div></div>
+                                    <div class="col"><div class="d-flex align-items-center bg-light rounded-4 p-3 h-100">Otros</div></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+            </div>
+        </div>
+    </div>
+{% endblock %}

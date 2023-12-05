@@ -1,0 +1,34 @@
+{% extends "base.html" %}
+
+{% load static %}
+
+{% block title %}
+    SACIS - UDES Dirección del Programa
+{% endblock %}
+
+{% block content %}
+<div class="text-center mb-5">
+    <h1 class="fw-bolder"><div class="d-inline-block text-gradient me-2"><i class="bi bi-gear-wide-connected"></i></div>Dirección del Programa</h1>
+</div>
+<div class="dropdown-divider"></div>
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-md-2">
+          <ul class="nav nav-pills flex-column mb-auto">
+              <li class="nav-item">
+                  <a class="nav-link link-primary fw-bolder mb-2" href="{% url 'Direccion' %}" aria-current="page">Usuarios SACIS</a>
+              </li>
+              <li class="nav-item">
+                  <a class="nav-link link-primary fw-bolder mb-2" href="{% url 'Criterios' %}" >Criterios de Calidad</a>
+              </li>
+          </ul>
+        </div>
+        <div class="col-md-auto">
+            <div class="fade show active">
+                {% block direccion %}
+                {% endblock %}
+            </div>
+         </div>
+    </div>
+</div>
+{% endblock %}

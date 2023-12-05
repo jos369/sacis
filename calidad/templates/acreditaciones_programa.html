@@ -1,0 +1,33 @@
+{% extends "calidad.html" %}
+
+{% load static %}
+
+{% block title %}
+    SACIS - UDES Acreditaciones del Programa Académico
+{% endblock %}
+
+{% block calidad %}
+    <div class="container">
+        <div class="d-flex align-items-center justify-content-between mb-4">
+            <h2 class="text-primary fw-bolder mb-0">Acreditaciones del Programa Académico</h2>
+        </div>
+        <div class="card shadow border-0 rounded-4 mb-5">
+            <div class="card-body p-5">
+                {% if acreditacion_list %}
+                    <ul>
+                    {% for acred in acreditacion_list %}
+                        <li>
+                            <a href="{% url 'Acreditacion-detail' acred.id %}">{{ acred }}</a>
+                            <div class="small text-muted"> Obtención: {{ acred.fechaObtencion }} </div>
+                        </li>
+                    {% endfor %}
+                    </ul>
+
+                {% else %}
+                    <p>No hay registros de acreditaciones para el Programa Académico</p>
+                {% endif %}
+            </div>
+        </div>
+    </div>
+
+{% endblock %}

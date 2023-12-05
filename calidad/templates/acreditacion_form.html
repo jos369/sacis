@@ -1,0 +1,28 @@
+{% extends "direccion.html" %}
+
+{% load static %}
+
+{% block title %}
+    SACIS - UDES Acreditación del Programa
+{% endblock %}
+
+{% block calidad %}
+
+    <div class="card shadow border-0 rounded-4 mb-5">
+            <div class="card-body p-5">
+                <div class="small fw-bolder">{{ acreditacion }}</div>
+                <div class="small text-muted">{{ acreditacion.programa.nombre }}</div>
+                <form action="" method="post">
+                    {% csrf_token %}
+                    <table>
+                    {{ form.as_table }}
+                    </table>
+                    <input  class="btn btn-warning px-4 py-3" type="submit" value="Actualizar">
+
+                </form>
+            </div>
+        </div>
+    <div>
+    <a class="btn btn-primary px-4 py-3" href="{% url 'Calidad' %}">Regresar</a>
+    </div>
+{% endblock %}

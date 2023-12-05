@@ -1,0 +1,33 @@
+{% extends "actividades.html" %}
+
+{% load static %}
+
+{% block title %}
+    SACIS - UDES Actividades del Programa Académico
+{% endblock %}
+
+{% block actividades %}
+    <div class="container">
+        <div class="d-flex align-items-center justify-content-between mb-4">
+            <h2 class="text-primary fw-bolder mb-0">Actividades del Programa Académico</h2>
+        </div>
+        <div class="card shadow border-0 rounded-4 mb-5">
+            <div class="card-body p-5">
+                {% if actividad_list %}
+                    <ul>
+                    {% for act in actividad_list %}
+                        <li>
+                        <a href="{% url 'Actividad-detail' act.id %}">{{ act }}</a>
+                        <div class="small text-muted">Fecha Programada: {{ act.fechaIniProgramada }}</div>
+                        </li>
+                    {% endfor %}
+                    </ul>
+
+                {% else %}
+                    <p>El programa académico no tiene actividades registradas</p>
+                {% endif %}
+            </div>
+        </div>
+    </div>
+
+{% endblock %}

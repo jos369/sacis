@@ -1,0 +1,53 @@
+{% extends "base.html" %}
+
+{% load static %}
+
+{% block title %}
+    Inicio de Sesión
+{% endblock %}
+
+{% block content %}
+<section class="py-5">
+    <div class="container px-5">
+        <!-- Contact form-->
+        <div class="bg-light rounded-4 py-5 px-4 px-md-5">
+
+            <form method="post" action="">
+            {% csrf_token %}
+                <div class="form-floating mb-3">
+                    {% if messages %}
+
+                    {% for mensaje in messages %}
+
+                    <span class="alert alert-{{mensaje.tags}}">  {{mensaje}}  </span>
+
+                    {% endfor %}
+
+                    {% endif %}
+                    <br/><br/><br/>
+                </div>
+                <div class="form-floating mb-3">
+                    <table>
+                        <tr>
+                            <td align="right">{{ form.username.label_tag }}</td>
+                            <td>{{ form.username }}</td>
+                        </tr>
+                        <tr>
+                            <td align="right">{{ form.password.label_tag }}</td>
+                            <td>{{ form.password }}</td>
+                        </tr>
+                    </table>
+                </div>
+                <div class="form-floating mb-3">
+                    <button type="submit" class="btn btn-primary">Login</button>
+                </div>
+            </form>
+        </div>
+        {# Assumes you setup the password_reset view in your URLconf #}
+        <p><a href="{% url 'password_reset' %}">¿Ha olvidado la contraseña?</a></p>
+    </div>
+</section>
+
+
+
+{% endblock %}

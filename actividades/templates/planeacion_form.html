@@ -1,0 +1,25 @@
+{% extends "actividades.html" %}
+
+{% load static %}
+
+{% block title %}
+    SACIS - UDES Planeación de Actividades
+{% endblock %}
+
+{% block actividades %}
+
+    <div class="card shadow border-0 rounded-4 mb-5">
+            <div class="card-body p-5">
+                <form action="" method="post">
+                    {% csrf_token %}
+                    <table>
+                    {{ form.as_table }}
+                    </table>
+                    <input  class="btn btn-warning px-4 py-3" type="submit" value="Guardar">
+                </form>
+            </div>
+        </div>
+    <div>
+    <a class="btn btn-primary px-4 py-3" href="{% url 'Planes' %}">Regresar</a>
+    </div>
+{% endblock %}

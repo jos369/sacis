@@ -1,0 +1,37 @@
+% extends "base.html" %}
+
+{% load static %}
+
+{% block title %}
+    SACIS - UDES Actividades
+{% endblock %}
+
+{% block content %}
+<div class="text-center mb-5">
+    <h1 class="fw-bolder"><div class="d-inline-block text-gradient me-2"><i class="bi bi-gear-wide-connected"></i></div>Dirección del Programa</h1>
+</div>
+<div class="dropdown-divider"></div>
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-md-2">
+          <ul class="nav nav-pills flex-column mb-auto">
+              <li class="nav-item">
+                  <a class="nav-link link-primary fw-bolder mb-2" href="{% url 'Actividades' %}" aria-current="page">Actividades</a>
+              </li>
+              <li class="nav-item">
+                  <a class="nav-link link-primary fw-bolder mb-2" href="{% url 'Planes' %}" >Planeacion</a>
+              </li>
+              <li class="nav-item">
+                  <a class="nav-link link-primary fw-bolder mb-2" href="{% url 'Evidencias' %}" >Evidencias</a>
+              </li>
+          </ul>
+        </div>
+        <div class="col-md-auto">
+            <div class="fade show active">
+                {% block actividades %}
+                {% endblock %}
+            </div>
+         </div>
+    </div>
+</div>
+{% endblock %}

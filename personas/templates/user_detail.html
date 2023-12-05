@@ -1,0 +1,33 @@
+{% extends "direccion.html" %}
+
+{% load static %}
+
+{% block title %}
+    SACIS - UDES Usuario {{ user_det.first_name }}
+{% endblock %}
+
+{% block direccion %}
+
+    <div class="card shadow border-0 rounded-4 mb-5">
+            <div class="card-body p-5">
+                <h3>Nombre: {{ user_det.first_name }} {{ user_det.last_name }}</h3>
+                <p>Email: {{ user_det.email }}</p>
+                <p>Usuario: {{ user_det.username }}</p>
+                <ul>
+                    Grupos:
+                    {% if user_det.groups.all %}
+                        {% for group in user_det.groups.all %}
+                            <li>{{ group.name }}</li>
+                        {% endfor %}
+                    {% else %}
+                        El usuario no pertenece a ningún grupo
+                    {% endif %}
+                </ul>
+                <p>Último inicio de sesión: {{ user_det.last_login }}</p>
+            </div>
+        </div>
+    <div>
+    <a class="btn btn-primary px-4 py-3" href="{% url 'Direccion' %}">Regresar</a>
+    <a class="btn btn-warning px-4 py-3" href="{% url 'Usuario-update' user_det.id %}">Actualizar</a>
+    </div>
+{% endblock %}

@@ -1,0 +1,43 @@
+{% extends "actividades.html" %}
+
+{% load static %}
+
+{% block title %}
+    SACIS - UDES Actividad {{ actividad }}
+{% endblock %}
+
+{% block actividades %}
+
+    <div class="card shadow border-0 rounded-4 mb-5">
+            <div class="card-body p-5">
+                <h3>Nombre: {{ actividad }}</h3>
+                <p>Objetivo: {{ actividad.objetivo }}</p>
+                <p>Descripción: </p>
+                <p>{{ actividad.descripcion }}</p>
+                <p>Duración: {{ actividad.duracion }} días </p>
+                <p>Lugar: {{ actividad.lugar }}</p>
+                <p>Fecha de Inicio Programada: {{ actividad.fechaIniProgramada }}</p>
+                <p>Fecha de Finalización Programada: {{ actividad.fechaFinProgramada }}</p>
+                <p>Fecha de Inicio Ejecutada: {{ actividad.fechaIniEjecutada }}</p>
+                <p>Fecha de Finalización Ejecutada: {{ actividad.fechaFinEjecutada }}</p>
+                <p>Presupuesto Programado: {{ actividad.presupuestoProgramado }}</p>
+                <p>Presupuesto Ejecutado: {{ actividad.presupuestoEjecutado }}</p>
+                <p>Modalidad: {{ actividad.modalidad }}</p>
+                <p>Cupo: {{ actividad.cupo }}</p>
+                <p>Asistencia: {{ actividad.asistencia }}</p>
+                <p>Estado: {{ actividad.estado }}</p>
+                <p>Observaciones: </p>
+                <p>{{ actividad.observaciones }}</p>
+                <p>Responsable: {{ actividad.responsable }}</p>
+                <p>Planeación: {% if actividad.planeacion %}{{ actividad.planeacion }}{% else %}N/A{% endif %}</p>
+                <p>Programas: {{ actividad.programas }}</p>
+                <p>Dependencias:  {{ actividad.dependencias }}</p>
+                <p>Criterios de Calidad: {{ actividad.criterios }}</p>
+            </div>
+        </div>
+    <div>
+    <a class="btn btn-primary px-4 py-3" href="{% url 'Actividades' %}">Regresar</a>
+    <a class="btn btn-warning px-4 py-3" href="{% url 'Actividad-update' actividad.id %}">Actualizar</a>
+    <a class="btn btn-success px-4 py-3" href="{% url 'Evidencias' actividad.id %}">Evidencias</a>
+    </div>
+{% endblock %}

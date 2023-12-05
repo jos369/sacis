@@ -1,0 +1,29 @@
+{% extends "actividades.html" %}
+
+{% load static %}
+
+{% block title %}
+    SACIS - UDES Evidencia {{ evidencia }}
+{% endblock %}
+
+{% block actividades %}
+
+    <div class="card shadow border-0 rounded-4 mb-5">
+            <div class="card-body p-5">
+                <h3>Evidencia: {{ evidencia }}</h3>
+                <p>Tipo: {{ evidencia.tipo }}</p>
+                <p>Fecha: {{ evidencia.fechaEv }}</p>
+                <p>Fecha de Registro: {{ evidencia.fechaReg }}</p>
+                <p>Descripción: </p>
+                <p>{{ evidencia.descripcion }}</p>
+                <p>Actividad: {{ evidencia.actividad }}</p>
+                <p>Soporte: {{ evidencia.soporte }}</p>
+                <p>Estudiantes: {{ evidencia.estudiantes }}</p>
+                <p>Profesores: {{ evidencia.docentes }}</p>
+            </div>
+        </div>
+    <div>
+    <a class="btn btn-primary px-4 py-3" href="{% url 'Evidencias' %}">Regresar</a>
+    <a class="btn btn-warning px-4 py-3" href="{% url 'Evidencia-update' evidencia.id %}">Actualizar</a>
+    </div>
+{% endblock %}

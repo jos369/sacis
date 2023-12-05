@@ -1,0 +1,32 @@
+{% extends "actividades.html" %}
+
+{% load static %}
+
+{% block title %}
+    SACIS - UDES Planeaciones del Programa Académico
+{% endblock %}
+
+{% block actividades %}
+    <div class="container">
+        <div class="d-flex align-items-center justify-content-between mb-4">
+            <h2 class="text-primary fw-bolder mb-0">Planeaciones del Programa Académico</h2>
+        </div>
+        <div class="card shadow border-0 rounded-4 mb-5">
+            <div class="card-body p-5">
+                {% if planeacion_list %}
+                    <ul>
+                    {% for plan in planeacion_list %}
+                        <li>
+                        <a href="{% url 'Planeacion-detail' plan.id %}">{{ plan }}</a>
+                        <div class="small text-muted">Estado: {{ plan.estado }}</div>
+                        </li>
+                    {% endfor %}
+                    </ul>
+                {% else %}
+                    <p>El programa académico no tiene planeaciones registradas</p>
+                {% endif %}
+            </div>
+        </div>
+    </div>
+
+{% endblock %}
