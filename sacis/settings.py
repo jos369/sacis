@@ -144,4 +144,4 @@ EMAIL_HOST = "smtp.mi.com.co"
 EMAIL_USE_SSL = True
 EMAIL_PORT = 465
 EMAIL_HOST_USER = "sacis-info@udes.com.co"
-EMAIL_HOST_PASSWORD = "Sacis1nfo"
+EMAIL_HOST_PASSWORD = "********"
